@@ -34,4 +34,4 @@ def check_user(id: str, password: str):
     if user is None:
         user = get_user_by_mail(id)
 
-    return user if user.password == password else None
+    return user if user is not None and user.password == password else None

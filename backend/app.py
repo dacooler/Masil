@@ -6,8 +6,9 @@ from flask_jwt_extended import (
     JWTManager, jwt_required, create_access_token,
     get_jwt_identity, set_access_cookies, unset_jwt_cookies
 )
-from flask_mail import Mail, Message
+import requests
 import database_access as database
+import mail
 from database import db, User
 
 
@@ -25,8 +26,6 @@ app.config['MAIL_USERNAME'] = 'a2f8df001@smtp-brevo.com'
 # needs weird string concat here to avoid github detecting pushing a secret to version control. Yes, this is good practice
 app.config['MAIL_PASSWORD'] = 'x' + 's' + 'm' + 't' + 'p' + 's' + 'i' + 'b' + '-1708f91c4301ee98d5948358e0a94ad48299823395de9989af31e00d0ef8485b-kAueZ6xhAHlltIR4'
 app.config['MAIL_DEFAULT_SENDER'] = 'viljo690@student.liu.se'
-
-mail = Mail(app)
 
 jwt = JWTManager(app)
 
@@ -63,15 +62,14 @@ def index():
 
 @app.route('/mail/<mail_adress>')
 def mail_test(mail_adress: str):
-    msg = Message(subject='Password Recovery', recipients=[mail_adress])
     user = database.get_user_by_mail(mail_adress)
     if user is None:
-        msg.body = 'No user with that mail exists, please register a new user.'
+        content = 'No user with that mail exists, please register a new user.'
     else:
-        msg.body = f'The name of your account is {user.name} and the password is {user.password}\n' \
-                    'Use this to log in to your account!'
-    mail.send(msg)
-    return 'mail sent', 200
+        content = f'The name of your account is {user.name} and the password is {user.password}\n' \
+                   'Use this to log in to your account!'
+    response = mail.send('Password Recovery', content, mail_adress)
+    return response.text, response.status_code
 
 
 if __name__ == '__main__':
