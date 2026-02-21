@@ -7,12 +7,13 @@ Meet **Masil** — the most secure website you have ever seen! <sup>[1]</sup>
 
 Navigation is done in **3D**! Physically walk to the page you want to get to!
 
-Ever forget your password? Just email us and we will send it to you!
+Ever forget your password? Just ask and we will email it to you!
 
 <sub>[1] Quote from Ola Eklund, co-founder of Masil</sub>
 
 ## Technical details
 
-The frontend is written exclusively in HTML, CSS and JavaScript, but the only thing Javascript is used for is the input.
+The frontend is written exclusively in HTML, CSS and JavaScript.
+Rendering is done exclusively in HTML and CSS.
 
-The backend is written in Python Flask and SQLAlchemy.
+The backend is written in Python with Flask and SQLAlchemy.
