@@ -18,7 +18,7 @@ $buttons = [
 <div class="like">
   
   <?php foreach ($buttons as $btn): ?>
-    <button class="likeBtn"
+    <button class="likeBtn noPress"
       data-api="<?= $btn['api'] ?>">
       <?= $btn['label'] ?>
     </button>
@@ -36,7 +36,7 @@ $buttons = [
   </script>
 </div>
 <div class="news"><div class="spinner"><h1>Masil News</h1></div></div>
-<div class="leeHolder"><div class="lee"> <p id="quest"> Would you like some help?</p><input onkeydown="lee(this)" placeholder="Ask"></input></div></div>
+<div class="leeHolder"><div class="lee "> <p id="quest"> Would you like some help?</p><input onkeydown="lee(this)" placeholder="Ask" class="noPress" ></input></div></div>
 <script>
 function lee(text){
   if(event.key === 'Enter') {

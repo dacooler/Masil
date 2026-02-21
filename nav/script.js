@@ -229,6 +229,12 @@ document.addEventListener("keyup", (event) => {
 const main = document.getElementById("main");
 
 main.addEventListener("click", async () => {
+  const noPress = document.getElementsByClassName("noPress")
+  for (let i = 0; i <= noPress.length; i++){
+    if (event.target === noPress[i]){
+      return;
+    }
+  }
   if (!main.pointerLockElement) {
     await main.requestPointerLock({
       unadjustedMovement: true,
