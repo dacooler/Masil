@@ -14,11 +14,11 @@
     left: -500px;
     top: -500px;
     transform-origin: 50% 50% 500px;
-    transform: rotateX(calc(var(--rotateY) * 1deg)) rotateY(calc(var(--rotateZ) * -1deg));
+    transform: rotateX(calc(var(--rotateY) * 1deg)) rotateY(calc(var(--rotateZ) * -1deg)) rotateX(90deg);
     --cWidth: 1000px;
     --cHeight: 1000px;
     --cDepth: 1000px;
-    --img: linear-gradient(blue, white);
+    --img: url("../../assets/images/sky.jpg");
 
   }
 }
