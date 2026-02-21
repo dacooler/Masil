@@ -10,7 +10,7 @@
       </div>
       <div class="login">
         <h3> Please DO login </h3>
-        <form action="login_user.php" method="post">
+        <form action="create_user.php" method="post">
           <div class="imgcontainer">
             <img src="assets/images/flen.jpg" alt="Avatar" class="avatar">
           </div>
