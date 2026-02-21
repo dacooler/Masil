@@ -107,8 +107,8 @@
   }
   .spin2{
     position: absolute;
-    top: 2500px;
-    left: 0px;
+    top: 2950px;
+    left: 450px;
   }
 }
 @keyframes spin{
