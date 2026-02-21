@@ -1,5 +1,5 @@
 <div class="navThing cubed">
-  <div><a href="../">NAV</a></div>
+  <div><iframe src="../course/ingproff.php"></iframe></div>
   <div></div>
   <div></div>
   <div></div>
