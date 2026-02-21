@@ -1,0 +1,19 @@
+.ground{
+  position: absolute;
+  transform-style: preserve-3d;
+  top: -50%;
+  left: -50%;
+  width: 1000px;
+  height: 1000px;
+  background-image: url("../../assets/images/flen.jpg");
+  background-size: 100%;
+  .navThing{
+    --img: url("../../assets/images/flen.jpg");
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    div{
+      background-size: 100%;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<div class="skyboxHolder">
+  <div class="skybox cubed">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+

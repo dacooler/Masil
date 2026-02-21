@@ -1,19 +1,28 @@
 var dx = 0;
 var dy = 0;
 var dz = 0;
+var dForward = 0;
+var dSide = 0;
 var posX = 0;
 var posY = 0;
 var posZ = 0;
 var rotateZ = 0;
 var rotateY = 0;
+const sense = 0.6;
 var r = document.querySelector(':root');
 
 function mainLoop() {
-  posX += dx;
+  posZ += dForward * Math.cos(rotateZ * Math.PI/180);
+  posX += dForward * Math.sin(rotateZ * Math.PI/180);
+  posX += dSide * Math.sin((rotateZ + 90) * Math.PI/180);
+  posZ += dSide * Math.cos((rotateZ + 90) * Math.PI/180);
   posY += dy;
-  posZ += dz;
   r.style.setProperty('--posX', posX);
-
+  r.style.setProperty('--posY', posY);
+  r.style.setProperty('--posZ', posZ);
+  r.style.setProperty('--rotateZ', rotateZ);
+  r.style.setProperty('--rotateY', rotateY);
+  lockChangeAlert();
 
 }
 
@@ -26,7 +35,19 @@ document.addEventListener("keydown", (event) => {
   const keyName = event.key;
 
   if (keyName === "w") {
-    dx = 1;
+    dForward = 1;
+    return;
+  }
+  if (keyName === "s"){
+    dForward = -1;
+    return;
+  }
+  if (keyName === "a"){
+    dSide = 1;
+    return;
+  }
+  if (keyName === "d"){
+    dSide = -1;
     return;
   }
 
@@ -38,7 +59,19 @@ document.addEventListener("keyup", (event) => {
   // As the user releases the Ctrl key, the key is no longer active,
   // so event.ctrlKey is false.
   if (keyName === "w") {
-    dx = 0;
+    dForward = 0;
+    return;
+  }
+  if (keyName === "s") {
+    dForward = 0;
+    return;
+  }
+  if (keyName === "a") {
+    dSide = 0;
+    return;
+  }
+  if (keyName === "d") {
+    dSide = 0;
     return;
   }
 });
@@ -51,6 +84,7 @@ main.addEventListener("click", async () => {
       unadjustedMovement: true,
     });
   }
+
 });
  document.addEventListener("mousemove", updatePosition);
 
@@ -65,5 +99,14 @@ function lockChangeAlert() {
 }
 
 function updatePosition(e) {
+  rotateZ -= e.movementX * sense;
+  console.log(rotateY);
+    rotateY -= e.movementY * sense;
+  if (rotateY > 90){
+    rotateY = 90;
+  }
+  if (rotateY < -90){
+    rotateY = -90;
+  }
 
 }
