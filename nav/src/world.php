@@ -28,4 +28,5 @@ $buttons = [
   </script>
 </div>
 <div class="news"><div class="spinner"><h1>Masil News</h1></div></div>
+<div class="leeHolder"><div class="lee"> <p> Would you like som help?</p></div></div>
 </html>
