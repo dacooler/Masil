@@ -47,7 +47,7 @@ def login(id: str, password: str):
         access_token = create_access_token(identity=user.name)
         response = jsonify({'login': True})
         set_access_cookies(response, access_token)
-        return response, 200
+        return access_token, 200
     else:
         return jsonify({'login': False, 'message': 'wrong liuID, mail or password'}), 400
 
