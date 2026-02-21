@@ -129,6 +129,15 @@ function collision({Box: box }) {
   )
 }
 
+function boundaries() {
+  return !(
+    -(posX) < 4000 &&
+    -(posX) > 0 &&
+    -(posZ) < 4000 &&
+    -(posZ) > 0 
+  )
+}
+
 
 function mainLoop() {
   var prevPosZ = posZ;
@@ -151,6 +160,11 @@ function mainLoop() {
       console.log("colision");
     }
   }
+    if (boundaries()) {
+      posX = prevPosX;
+      posZ = prevPosZ;
+      console.log("colision");
+    }
   r.style.setProperty('--posX', posX);
   r.style.setProperty('--posY', posY);
   r.style.setProperty('--posZ', posZ);

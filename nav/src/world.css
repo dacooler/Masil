@@ -34,10 +34,12 @@
     }
   }
   .wall{
-    --img: linear-gradient(lightblue, blue);
+    --img: url("../../assets/images/bricks.jpg");
     --cDepth: 200px;
+    box-shadow: -10px -10px 8px #000a;
     div{
-      backface-visibility: none;
+      background-size: 200px 200px;
+      backface-visibility: hidden;
     }
   }
   .navThing{
@@ -48,7 +50,7 @@
     animation: spin 10s linear infinite;
     div{
       background-size: 100%;
-      backface-visibility: none;
+      backface-visibility: hidden;
     }
     iframe{
       width: 1000px;
@@ -92,7 +94,7 @@
     left: 100px;
     width: 200px;
     height: 3000px;
-    box-shadow: 1px 1px 1px 1px;
+    box-shadow: -1px -1px 1px #000a;
   }
   .under{
     background-image:radial-gradient(black, white);
