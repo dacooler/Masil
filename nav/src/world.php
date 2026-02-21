@@ -7,8 +7,9 @@ $buttons = [
 <!DOCTYPE html>
 <html>
 <div class="welcome"><div class="spinner"><h1>Courses and programs</h1></div></div>
+<div class="news"><div class="spinner"><h1>Masil News</h1></div></div>
 <div class="carpet"></div>
-<div class="spin1 under">
+<div class="spin1 under"></div>
 <div class="spin2 under">
 </div>
 <div class="like">

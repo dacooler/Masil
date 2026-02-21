@@ -35,7 +35,7 @@
   }
   .wall{
     --img: linear-gradient(lightblue, blue);
-    --cDepth: 500px;
+    --cDepth: 200px;
     div{
       backface-visibility: none;
     }
@@ -92,6 +92,7 @@
     left: 100px;
     width: 200px;
     height: 3000px;
+    box-shadow: 1px 1px 1px 1px;
   }
   .under{
     background-image:radial-gradient(black, white);

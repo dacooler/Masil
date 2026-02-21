@@ -64,6 +64,15 @@ var newsBox = new Box({
 ground.appendChild(newsBox.get_element());
 boxes.push(newsBox);
 
+var wall1 = new Box({
+  position: { x: 800, y: 500},
+  width: 100,
+  height: 2000,
+  hclass: 'wall',
+});
+ground.appendChild(wall1.get_element());
+boxes.push(wall1);
+
 /*
 var wall1 = new Box({
   position: { x: -100, y: -100},
