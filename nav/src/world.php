@@ -7,7 +7,6 @@ $buttons = [
 <!DOCTYPE html>
 <html>
 <div class="welcome"><div class="spinner"><h1>Courses and programs</h1></div></div>
-<div class="news"><div class="spinner"><h1>Masil News</h1></div></div>
 <div class="carpet"></div>
 <div class="spin1 under"></div>
 <div class="spin2 under">
@@ -39,7 +38,8 @@ function lee(text){
   if(event.key === 'Enter') {
         text.value = "";
         var elem = document.createElement("p");
-        elem.innerHTML = "Sorry, i cant help you with that.";
+        const answers = ["Sorry, i cant help you with that.", "Please ask tommorrow.", "SERVICE DOWN", "Im here to help!", "What did you say?", "No.", "Okay, not my problem."]
+        elem.innerHTML = answers[Math.floor(Math.random() * answers.length)];
         text.parentNode.appendChild(elem);
         var quest = document.getElementById("quest");
         quest.style.display = "none";

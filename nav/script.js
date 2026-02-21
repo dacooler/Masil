@@ -72,6 +72,14 @@ var wall1 = new Box({
 });
 ground.appendChild(wall1.get_element());
 boxes.push(wall1);
+var wall2 = new Box({
+  position: { x: 800, y: 600},
+  width: 2000,
+  height: 100,
+  hclass: 'wall',
+});
+ground.appendChild(wall2.get_element());
+boxes.push(wall2);
 
 /*
 var wall1 = new Box({
