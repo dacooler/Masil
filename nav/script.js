@@ -3,9 +3,9 @@ var dy = 0;
 var dz = 0;
 var dForward = 0;
 var dSide = 0;
-var posX = 0;
+var posX = -200;
 var posY = 0;
-var posZ = 0;
+var posZ = -200;
 var camera_radius = 10;
 var rotateZ = 0;
 var rotateY = 0;
@@ -19,13 +19,11 @@ class Box {
     position = { x: 200, y: 200 },
     width = 100,
     height = 100,
-    depth = 100,
     hclass = '',
   }) {
     this.position = position
     this.width = width
     this.height = height
-    this.depth = depth
     this.class = hclass
 }
   get_element() {
@@ -33,7 +31,6 @@ class Box {
     temp.className = this.class + " cubed";
     temp.style.setProperty('--cWidth', this.width + 'px');
     temp.style.setProperty('--cHeight', this.height + 'px');
-    temp.style.setProperty('--cDepth', this.depth + 'px');
     temp.style.setProperty('top', this.position.x + 'px');
     temp.style.setProperty('left', this.position.y + 'px');
     temp.style.setProperty('position', 'absolute');
@@ -48,7 +45,6 @@ var box1 = new Box({
   position: { x: 500, y: 500 },
   width: 100,
   height: 100,
-  depth: 100,
   hclass: 'navThing',
 });
 var elem = box1.get_element();
@@ -59,12 +55,58 @@ child.appendChild(iframe);
 ground.appendChild(elem);
 boxes.push(box1);
 
+var newsBox = new Box({
+  position: { x: 3000, y: 500 },
+  width: 100,
+  height: 100,
+  hclass: 'navThing',
+});
+ground.appendChild(newsBox.get_element());
+boxes.push(newsBox);
+
+var wall1 = new Box({
+  position: { x: -100, y: -100},
+  width: 5100,
+  height: 100,
+  hclass: 'wall',
+});
+ground.appendChild(wall1.get_element());
+boxes.push(wall1);
+
+var wall2 = new Box({
+  position: { x: 4000, y: 0},
+  width: 4100,
+  height: 100,
+  hclass: 'wall',
+});
+ground.appendChild(wall2.get_element());
+boxes.push(wall2);
+
+var wall3 = new Box({
+  position: { x: 0, y: -100},
+  width: 100,
+  height: 4100,
+  hclass: 'wall',
+});
+ground.appendChild(wall3.get_element());
+boxes.push(wall3);
+
+var wall4 = new Box({
+  position: { x: -100, y: 4000},
+  width: 100,
+  height: 4100,
+  hclass: 'wall',
+});
+ground.appendChild(wall4.get_element());
+boxes.push(wall4);
+
+
 function collision({Box: box }) {
   return (
-    -(posX) + camera_radius > box.position.x && // box1 right collides with box2 left
-    -(posX) - camera_radius < box.position.x + box.width && // box2 right collides with box1 left
-    -(posZ) + camera_radius > box.position.y && // box1 bottom collides with box2 top
-    -(posZ) - camera_radius < box.position.y + box.height// box1 top collides with box2 bottom
+    -(posX) + camera_radius > box.position.y && // box1 right collides with box2 left
+    -(posX) - camera_radius < box.position.y + box.width && // box2 right collides with box1 left
+    -(posZ) + camera_radius > box.position.x && // box1 bottom collides with box2 top
+    -(posZ) - camera_radius < box.position.x + box.height// box1 top collides with box2 bottom
   )
 }
 

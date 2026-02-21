@@ -3,10 +3,14 @@
   transform-style: preserve-3d;
   top: -50%;
   left: -50%;
-  width: 1000px;
-  height: 1000px;
+  width: 4000px;
+  height: 4000px;
   background-image: linear-gradient(gray, lightgray);
   background-size: 10px 10px;
+  .wall{
+    --img: linear-gradient(lightblue, blue);
+    --cDepth: 1000px;
+  }
   .navThing{
     --img: url("../../assets/images/flen.jpg");
     position:absolute;
@@ -29,18 +33,26 @@
     font-size: 100px;
     position: absolute;
     transform: translate(-50%, -50%) rotateX(90deg) translateY(500px) scale(1, -1);
-    top: 50%;
-    left: 50%;
-    .spinner{
-      animation: spin2 2s linear infinite;
-    }
+    top: 500px;
+    left: 500px;
+  }
+  .spinner{
+    animation: spin2 2s linear infinite;
+  }
+  .news{
+    transform-style: preserve-3d;
+    font-size: 100px;
+    position: absolute;
+    transform: translate(-50%, -50%) rotateX(90deg) translateY(500px) scale(1, -1);
+    top: 3000px;
+    left: 500px;
   }
   .like{
     position: absolute;
     transform: rotateX(90deg) translateY(50px) scale(1, -1);
     transform-style: preserve-3d;
-    top: 10%;
-    left: 20%;
+    top: 100px;
+    left: 200px;
   }
 }
 @keyframes spin{
