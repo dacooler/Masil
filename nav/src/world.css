@@ -25,7 +25,11 @@
       height: 100px;
       p{
         position: absolute;
-        top: -40px;
+        top: -80px;
+      }
+      input{
+        position: absolute;
+        top: -10px;
       }
     }
   }
