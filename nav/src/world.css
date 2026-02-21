@@ -25,13 +25,17 @@
       height: 100px;
       p{
         position: absolute;
-        top: -40px;
+        top: -80px;
+      }
+      input{
+        position: absolute;
+        top: -10px;
       }
     }
   }
   .wall{
     --img: linear-gradient(lightblue, blue);
-    --cDepth: 500px;
+    --cDepth: 200px;
     div{
       backface-visibility: none;
     }
@@ -64,6 +68,7 @@
   }
   .spinner{
     animation: spin2 2s linear infinite;
+    background-color: lightblue;
   }
   .news{
     transform-style: preserve-3d;
@@ -79,6 +84,31 @@
     transform-style: preserve-3d;
     top: 100px;
     left: 200px;
+  }
+  .carpet{
+    background-image:url("../../assets/images/carpet.jpg");
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 200px;
+    height: 3000px;
+    box-shadow: 1px 1px 1px 1px;
+  }
+  .under{
+    background-image:radial-gradient(black, white);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+  .spin1{
+    position: absolute;
+    left: 450px;
+    top: 450px;
+  }
+  .spin2{
+    position: absolute;
+    top: 2950px;
+    left: 450px;
   }
 }
 @keyframes spin{

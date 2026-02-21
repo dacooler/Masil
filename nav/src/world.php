@@ -7,6 +7,11 @@ $buttons = [
 <!DOCTYPE html>
 <html>
 <div class="welcome"><div class="spinner"><h1>Courses and programs</h1></div></div>
+<div class="news"><div class="spinner"><h1>Masil News</h1></div></div>
+<div class="carpet"></div>
+<div class="spin1 under"></div>
+<div class="spin2 under">
+</div>
 <div class="like">
   
   <?php foreach ($buttons as $btn): ?>
@@ -28,5 +33,21 @@ $buttons = [
   </script>
 </div>
 <div class="news"><div class="spinner"><h1>Masil News</h1></div></div>
-<div class="leeHolder"><div class="lee"> <p> Would you like som help?</p></div></div>
+<div class="leeHolder"><div class="lee"> <p id="quest"> Would you like some help?</p><input onkeydown="lee(this)" placeholder="Ask"></input></div></div>
+<script>
+function lee(text){
+  if(event.key === 'Enter') {
+        text.value = "";
+        var elem = document.createElement("p");
+        elem.innerHTML = "Sorry, i cant help you with that.";
+        text.parentNode.appendChild(elem);
+        var quest = document.getElementById("quest");
+        quest.style.display = "none";
+        setTimeout(function(){
+          elem.remove();
+          quest.style.display = "inline";
+        }, 2000);
+    }
+}
+</script>
 </html>

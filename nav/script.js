@@ -64,6 +64,15 @@ var newsBox = new Box({
 ground.appendChild(newsBox.get_element());
 boxes.push(newsBox);
 
+var wall1 = new Box({
+  position: { x: 800, y: 500},
+  width: 100,
+  height: 2000,
+  hclass: 'wall',
+});
+ground.appendChild(wall1.get_element());
+boxes.push(wall1);
+
 /*
 var wall1 = new Box({
   position: { x: -100, y: -100},
@@ -121,6 +130,12 @@ function mainLoop() {
   posX += dSide * Math.sin((rotateZ + 90) * Math.PI/180);
   posZ += dSide * Math.cos((rotateZ + 90) * Math.PI/180);
   posY += dy;
+  if (posY > 0) {
+    dy -= 1;
+  }
+  else {
+    dy = 0;
+  }
   for (let i = 0; i < boxes.length; ++i) {
     if (collision({Box: boxes[i]})) {
       posX = prevPosX;
@@ -156,6 +171,12 @@ document.addEventListener("keydown", (event) => {
   }
   if (keyName === "d"){
     dSide = -10;
+    return;
+  }
+  if (keyName === " "){
+    if (posY === 0){
+      dy = 15;
+    }
     return;
   }
 
