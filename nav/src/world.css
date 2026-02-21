@@ -35,6 +35,13 @@
       animation: spin2 2s linear infinite;
     }
   }
+  .like{
+    position: absolute;
+    transform: rotateX(90deg) translateY(50px) scale(1, -1);
+    transform-style: preserve-3d;
+    top: 10%;
+    left: 20%;
+  }
 }
 @keyframes spin{
   from{transform: rotate(0deg)};
