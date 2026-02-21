@@ -64,6 +64,7 @@ var newsBox = new Box({
 ground.appendChild(newsBox.get_element());
 boxes.push(newsBox);
 
+/*
 var wall1 = new Box({
   position: { x: -100, y: -100},
   width: 5100,
@@ -99,6 +100,7 @@ var wall4 = new Box({
 });
 ground.appendChild(wall4.get_element());
 boxes.push(wall4);
+*/
 
 
 function collision({Box: box }) {

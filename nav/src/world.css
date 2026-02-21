@@ -9,7 +9,10 @@
   background-size: 10px 10px;
   .wall{
     --img: linear-gradient(lightblue, blue);
-    --cDepth: 1000px;
+    --cDepth: 500px;
+    div{
+      backface-visibility: none;
+    }
   }
   .navThing{
     --img: url("../../assets/images/flen.jpg");
@@ -19,6 +22,7 @@
     animation: spin 10s linear infinite;
     div{
       background-size: 100%;
+      backface-visibility: none;
     }
     iframe{
       width: 1000px;
