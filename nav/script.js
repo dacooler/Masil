@@ -6,48 +6,112 @@ var dSide = 0;
 var posX = 0;
 var posY = 0;
 var posZ = 0;
+var camera_radius = 10;
 var rotateZ = 0;
 var rotateY = 0;
 const sense = 0.6;
 var r = document.querySelector(':root');
+var ground = document.querySelector('.ground');
+var boxes = [];
+
+class Box {
+  constructor({
+    position = { x: 200, y: 200 },
+    width = 100,
+    height = 100,
+    depth = 100,
+    hclass = '',
+  }) {
+    this.position = position
+    this.width = width
+    this.height = height
+    this.depth = depth
+    this.class = hclass
+}
+  get_element() {
+    var temp = document.createElement('div');
+    temp.className = this.class + " cubed";
+    temp.style.setProperty('--cWidth', this.width + 'px');
+    temp.style.setProperty('--cHeight', this.height + 'px');
+    temp.style.setProperty('--cDepth', this.depth + 'px');
+    temp.style.setProperty('top', this.position.x + 'px');
+    temp.style.setProperty('left', this.position.y + 'px');
+    temp.style.setProperty('position', 'absolute');
+    for (let i = 0; i < 6; i++) {
+      temp.appendChild(document.createElement('div'));
+    }
+    return temp;
+  }
+}
+
+var box1 = new Box({
+  position: { x: 500, y: 500 },
+  width: 100,
+  height: 100,
+  depth: 100,
+  hclass: 'navThing',
+});
+var elem = box1.get_element();
+var child = elem.children[1];
+var iframe = document.createElement('iframe');
+iframe.src = "../course/ingproff.php"
+child.appendChild(iframe);
+ground.appendChild(elem);
+boxes.push(box1);
+
+function collision({Box: box }) {
+  return (
+    -(posX) + camera_radius > box.position.x && // box1 right collides with box2 left
+    -(posX) - camera_radius < box.position.x + box.width && // box2 right collides with box1 left
+    -(posZ) + camera_radius > box.position.y && // box1 bottom collides with box2 top
+    -(posZ) - camera_radius < box.position.y + box.height// box1 top collides with box2 bottom
+  )
+}
+
 
 function mainLoop() {
+  var prevPosZ = posZ;
+  var prevPosX = posX;
   posZ += dForward * Math.cos(rotateZ * Math.PI/180);
   posX += dForward * Math.sin(rotateZ * Math.PI/180);
   posX += dSide * Math.sin((rotateZ + 90) * Math.PI/180);
   posZ += dSide * Math.cos((rotateZ + 90) * Math.PI/180);
   posY += dy;
+  for (let i = 0; i < boxes.length; ++i) {
+    if (collision({Box: boxes[i]})) {
+      posX = prevPosX;
+      posZ = prevPosZ;
+      console.log("colision");
+    }
+  }
   r.style.setProperty('--posX', posX);
   r.style.setProperty('--posY', posY);
   r.style.setProperty('--posZ', posZ);
   r.style.setProperty('--rotateZ', rotateZ);
   r.style.setProperty('--rotateY', rotateY);
-  lockChangeAlert();
-
 }
 
 setInterval(mainLoop, 20);
 
 
 document.addEventListener("keydown", (event) => {
-  console.log("hej");
 
   const keyName = event.key;
 
   if (keyName === "w") {
-    dForward = 1;
+    dForward = 10;
     return;
   }
   if (keyName === "s"){
-    dForward = -1;
+    dForward = -10;
     return;
   }
   if (keyName === "a"){
-    dSide = 1;
+    dSide = 10;
     return;
   }
   if (keyName === "d"){
-    dSide = -1;
+    dSide = -10;
     return;
   }
 
@@ -78,7 +142,6 @@ document.addEventListener("keyup", (event) => {
 const main = document.getElementById("main");
 
 main.addEventListener("click", async () => {
-  console.log("HEJ");
   if (!main.pointerLockElement) {
     await main.requestPointerLock({
       unadjustedMovement: true,
@@ -90,17 +153,16 @@ main.addEventListener("click", async () => {
 
 function lockChangeAlert() {
   if (document.pointerLockElement === main) {
-    console.log("The pointer lock status is now locked");
     document.addEventListener("mousemove", updatePosition);
   } else {
-    console.log("The pointer lock status is now unlocked");
     document.removeEventListener("mousemove", updatePosition);
   }
 }
+document.addEventListener("pointerlockchange", lockChangeAlert);
+lockChangeAlert();
 
 function updatePosition(e) {
   rotateZ -= e.movementX * sense;
-  console.log(rotateY);
     rotateY -= e.movementY * sense;
   if (rotateY > 90){
     rotateY = 90;
