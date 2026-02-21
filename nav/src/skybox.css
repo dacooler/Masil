@@ -1,0 +1,25 @@
+.skyboxHolder{
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  left: 50%;
+  top: 50%;
+  transform: perspective(var(--fov)) translateZ(calc(var(--fov) - 500px));
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  pointer-events: none;
+
+  .skybox{
+    position: absolute;
+    left: -500px;
+    top: -500px;
+    transform-origin: 50% 50% 500px;
+    transform: rotateX(calc(var(--rotateY) * 1deg)) rotateY(calc(var(--rotateZ) * -1deg));
+    --cWidth: 1000px;
+    --cHeight: 1000px;
+    --cDepth: 1000px;
+    --img: linear-gradient(blue, white);
+
+  }
+}
+

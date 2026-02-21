@@ -2,6 +2,7 @@
   --fov: 20cm;
   --rotateZ: 180;
   --rotateY: 0;
+  --worldRotation: rotateX(calc(var(--rotateY) * 1deg)) rotateZ(calc(var(--rotateZ) * 1deg))
 }
 .cameraHolder{
   width:0px;
@@ -10,19 +11,10 @@
   left:50%;
   top:50%;
   transform-style: preserve-3d;
-  transform: perspective(var(--fov)) translateY(50px) translateZ(var(--fov)) rotateX(80deg);
-  transition: transform 1s;
+  transform: perspective(var(--fov)) translateY(50px) translateZ(var(--fov)) rotateX(90deg);
   .cameraRig{
     transform-style: preserve-3d;
-    transform: rotateZ(calc(var(--rotateZ) * 1deg)) translate(calc(var(--posX) * 1px), calc(var(--posY) * 1px));
-    .ground{
-      position: absolute;
-      transform-style: preserve-3d;
-      top: -50%;
-      left: -50%;
-      width: 1000px;
-      height: 1000px;
-      background-image: url("../../assets/images/flen.jpg");
-    }
+    transform-origin: 50% 50% 50px;
+    transform: var(--worldRotation) translate(calc(var(--posX) * 1px), calc(var(--posZ) * 1px));
   }
 }
