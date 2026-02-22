@@ -120,11 +120,28 @@
     height: 3000px;
     box-shadow: -1px -1px 1px #000a;
   }
+  .carpet2{
+    background-image:url("../../assets/images/carpet.jpg");
+    position: absolute;
+    filter: hue-rotate(90deg);
+    top: 100px;
+    left: 300px;
+    width: 3000px;
+    height: 200px;
+    box-shadow: -1px -1px 1px #000a;
+  }
+  .text{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateX(-90deg) scale(-1, 1) translate(0, -200px);
+  }
   .under{
     background-image:radial-gradient(black, white);
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    transform-style: preserve-3d;
   }
   .spin1{
     position: absolute;
@@ -135,6 +152,11 @@
     position: absolute;
     top: 2950px;
     left: 450px;
+  }
+  .spin3{
+    position: absolute;
+    left: 950px;
+    top: 450px;
   }
 }
 @keyframes spin{

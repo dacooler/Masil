@@ -12,9 +12,10 @@ $buttons = [
 <div class="stop stop4"></div>
 <div class="welcome"><div class="spinner"><h1>Courses and programs</h1></div></div>
 <div class="carpet"></div>
-<div class="spin1 under"></div>
-<div class="spin2 under">
-</div>
+<div class="carpet2"></div>
+<div class="spin1 under"><div class="text ingproff"><h3>Ingenjörsproffesionalism</h3></div></div>
+<div class="spin2 under"></div>
+<div class="spin3 under"><div class="text kurser"><h3>Courses</h3></div></div>
 <div class="like">
   
   <?php foreach ($buttons as $btn): ?>
