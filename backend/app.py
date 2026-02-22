@@ -37,7 +37,7 @@ CORS(app, supports_credentials=True)
 def create_user(name: str, password: str, mail_adress: str):
     result = database.create_user(name, password, mail_adress)
     if isinstance(result, str):
-        return result, 400
+        return jsonify({'status': 'failed', 'message': result}), 400
 
     user: User = result
     return jsonify({'status': 'success', 'message': 'Successfully created user: ' + str(user.to_json())}), 201
