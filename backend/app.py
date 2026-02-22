@@ -55,11 +55,6 @@ def login(id: str, password: str):
     else:
         return jsonify({'login': False, 'message': 'wrong liuID, mail or password'}), 400
 
-@app.route('/')
-@jwt_required()
-def index():
-    return get_jwt_identity(), 200
-
 
 @app.route('/mail/<mail_adress>')
 def mail_recover_password(mail_adress: str):
@@ -74,10 +69,8 @@ def mail_recover_password(mail_adress: str):
     return response.text, response.status_code
 
 
-@app.route('/like/<page_id>')
-@jwt_required()
-def like_page(page_id: str):
-    name = get_jwt_identity()
+@app.route('/like/<page_id>/<name>')
+def like_page(page_id: str, name: str):
     user = database.get_user_by_name(name)
     database.like_or_create_page(page_id, user)
     return 'Liked page', 200
