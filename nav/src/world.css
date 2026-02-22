@@ -104,11 +104,18 @@
     top: 3000px;
     left: 500px;
   }
-  .like{
+  .like:has(.button1){
     position: absolute;
     transform: rotateX(90deg) translateY(50px) scale(1, -1);
     transform-style: preserve-3d;
     top: 100px;
+    left: 200px;
+  }
+  .like:has(.button2){
+    position: absolute;
+    transform: rotateX(90deg) translateY(50px) scale(1, -1);
+    transform-style: preserve-3d;
+    top: 3000px;
     left: 200px;
   }
   .carpet{

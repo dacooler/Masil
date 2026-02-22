@@ -59,19 +59,18 @@ def get_or_create_page(id: str):
     return page
 
 
-def like_page(page: Page, user: User):
-    if user not in page.liked_by:
-        page.liked_by.append(user)
-        db.session.commit()
+def like_page(page: Page):
+    page.likes += 1
+    db.session.commit()
 
 
-def like_or_create_page(page_id: str, user: User):
-    """Marks a certain page as liked by user.
+def like_or_create_page(page_id: str):
+    """Marks a certain page as liked.
     If page does not exist, page is created and then liked.
     """
     page = get_or_create_page(page_id)
-    like_page(page, user)
+    like_page(page)
 
 
 def get_likes(page: Page):
-    return len(page.liked_by)
+    return page.likes

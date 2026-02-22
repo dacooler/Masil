@@ -35,28 +35,30 @@
       </div>
     </div>
     <script>
-    document.getElementById("createUserForm").addEventListener("submit", function(e) {
+    document.getElementById("createUserForm").addEventListener("submit", async function(e) {
       e.preventDefault();
-
       const formData = new FormData(this);
+      const email = encodeURIComponent(formData.get("email"));
+      const uname = encodeURIComponent(formData.get("uname"));
+      const psw = encodeURIComponent(formData.get("psw"));
 
-      fetch("create_user.php", {
-        method: "POST",
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          // Redirect after successful login
+      try {
+        const response = await fetch(`http://toglivvilgot.pythonanywhere.com/users/create/${uname}/${psw}/${email}`, {
+          method: "GET",
+          credentials: "include"
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
           window.location.href = "nav/";
         } else {
           alert("Account creation failed: " + (data.message || ""));
         }
-      })
-      .catch(error => {
-        console.error(error);
+      } catch (err) {
+        console.error(err);
         alert("Account creation failed");
-      });
+      }
     });
     </script>
   </body>

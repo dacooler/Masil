@@ -1,6 +1,17 @@
 <?php
 $buttons = [
-    ['label' => 'Like', 'api' => 'http://toglivvilgot.pythonanywhere.com/like/0'],
+  [
+    'label' => 'Likes', 
+    'like' => 'http://toglivvilgot.pythonanywhere.com/like/0', 
+    'getlikes' => 'http://toglivvilgot.pythonanywhere.com/getlikes/0',
+    'class' => 'button1'
+  ],
+  [
+    'label' => 'Likes2', 
+    'like' => 'http://toglivvilgot.pythonanywhere.com/like/1', 
+    'getlikes' => 'http://toglivvilgot.pythonanywhere.com/getlikes/1',
+    'class' => 'button2'
+  ],
 ];
 ?>
 
@@ -16,30 +27,51 @@ $buttons = [
 <div class="spin1 under"><div class="text ingproff"><h3>Ingenjörsproffesionalism</h3></div></div>
 <div class="spin2 under"></div>
 <div class="spin3 under"><div class="text kurser"><h3>Courses</h3></div></div>
-<div class="like">
-  
+  <div class="leeHolder"><div class="lee "> <p id="quest"> Would you like some help?</p><input onkeydown="lee(this)" placeholder="Ask" class="noPress" ></input></div></div>
+<div class="welcome">
+  <div class="spinner">
+    <h1>Courses and programs</h1>
+  </div>
+</div>
   <?php foreach ($buttons as $btn): ?>
-    <button class="likeBtn noPress"
-      data-api="<?= $btn['api'] ?>">
-      <?= $btn['label'] ?>
+<div class="like">
+    <button 
+      class="noPress likeBtn <?= $btn['class'] ?>"
+      data-like="<?= $btn['like'] ?>"
+      data-getlikes="<?= $btn['getlikes'] ?>">
+      <?= $btn['label'] ?> (0)
     </button>
+</div>
   <?php endforeach; ?>
 
   <script>
     const buttons = document.querySelectorAll('.likeBtn');
     buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      const apiUrl = button.dataset.api; // read data-api attribute
-      fetch(apiUrl, { 
-        method: 'GET',
-        credentials: 'include'
-      })
+      const likeUrl = button.dataset.like;
+      const likesUrl = button.dataset.getlikes;
+
+      // Function to update like count
+      function updateLikes() {
+        fetch(likesUrl)
+          .then(response => response.text())
+          .then(data => {
+            button.textContent = `Likes: ${data}`;
+          });
+      }
+      
+      // Load likes when page loads
+      updateLikes();
+
+      // When button is clicked
+      button.addEventListener('click', () => {
+        fetch(likeUrl)
+        .then(() => {
+          updateLikes(); // refresh count after liking
+        });
       });
     });
   </script>
-</div>
 <div class="news"><div class="spinner"><h1>Masil News</h1></div></div>
-<div class="leeHolder"><div class="lee "> <p id="quest"> Would you like some help?</p><input onkeydown="lee(this)" placeholder="Ask" class="noPress" ></input></div></div>
 <script>
 function lee(text){
   if(event.key === 'Enter') {
