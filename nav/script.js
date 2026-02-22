@@ -115,7 +115,32 @@ var newsBox = new Box({
   height: 100,
   hclass: 'navThing',
 });
-ground.appendChild(newsBox.get_element());
+var elem = newsBox.get_element();
+var child = elem.children[1];
+var iframe = document.createElement('iframe');
+iframe.src = "../news/news1.php"
+child.appendChild(iframe);
+var child = elem.children[2];
+var iframe = document.createElement('iframe');
+iframe.src = "../news/news2.php"
+child.appendChild(iframe);
+var child = elem.children[3];
+var iframe = document.createElement('iframe');
+iframe.src = "../news/news3.php"
+child.appendChild(iframe);
+var child = elem.children[4];
+var iframe = document.createElement('iframe');
+iframe.src = "../news/news4.php"
+child.appendChild(iframe);
+var child = elem;
+var iframe = document.createElement('iframe');
+iframe.src = "../news/news5.php"
+child.appendChild(iframe);
+var child = elem.children[0];
+var iframe = document.createElement('iframe');
+iframe.src = "../news/news6.php"
+child.appendChild(iframe);
+ground.appendChild(elem);
 boxes.push(newsBox);
 
 var wall1 = new Box({
