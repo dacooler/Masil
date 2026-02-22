@@ -79,7 +79,7 @@ def like_page(page_id: str):
 def get_likes_of_page(page_id: str):
     page = database.get_or_create_page(page_id)
     likes = database.get_likes(page)
-    return jsonify({'page': page_id, 'likes': likes}), 200
+    return likes, 200
 
 
 if __name__ == '__main__':
