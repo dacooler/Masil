@@ -11,9 +11,6 @@
       <div class="login">
         <h3> Please DO login </h3>
         <form id="loginForm" method="post">
-          <div class="imgcontainer">
-            <img src="assets/images/flen.jpg" alt="Avatar" class="avatar">
-          </div>
           <div class="container">
             <label for="uname"><b>Username or e-mail address</b></label>
             <input type="text" placeholder="Enter username or e-mail address" name="uname" required>
