@@ -37,28 +37,23 @@ CORS(app, supports_credentials=True)
 def create_user(name: str, password: str, mail_adress: str):
     result = database.create_user(name, password, mail_adress)
     if isinstance(result, str):
-        return result, 400
+        return jsonify({'status': 'failed', 'message': result}), 400
 
     user: User = result
-    return 'Successfully created user: ' + str(user.to_json()), 201
+    return jsonify({'status': 'success', 'message': 'Successfully created user: ' + str(user.to_json())}), 201
 
 
 @app.route('/users/login/<id>/<password>')
 def login(id: str, password: str):
     user = database.check_user(id, password)
-    if(user):
+    if user:
         access_token = create_access_token(identity=user.name)
         response = jsonify({'login': True})
+        # Attach HttpOnly cookie
         set_access_cookies(response, access_token)
-        return access_token, 200
+        return response, 200  # ✅ return the response with cookie
     else:
         return jsonify({'login': False, 'message': 'wrong liuID, mail or password'}), 400
-
-
-@app.route('/')
-@jwt_required()
-def index():
-    return get_jwt_identity(), 200
 
 
 @app.route('/mail/<mail_adress>')
@@ -75,11 +70,8 @@ def mail_recover_password(mail_adress: str):
 
 
 @app.route('/like/<page_id>')
-@jwt_required()
 def like_page(page_id: str):
-    name = get_jwt_identity()
-    user = database.get_user_by_name(name)
-    database.like_or_create_page(page_id, user)
+    database.like_or_create_page(page_id)
     return 'Liked page', 200
 
 
@@ -87,7 +79,7 @@ def like_page(page_id: str):
 def get_likes_of_page(page_id: str):
     page = database.get_or_create_page(page_id)
     likes = database.get_likes(page)
-    return jsonify({'page': page_id, 'likes': likes}), 200
+    return str(likes), 200
 
 
 if __name__ == '__main__':

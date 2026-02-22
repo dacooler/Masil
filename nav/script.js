@@ -52,6 +52,26 @@ var child = elem.children[1];
 var iframe = document.createElement('iframe');
 iframe.src = "../course/ingproff.php"
 child.appendChild(iframe);
+var child = elem.children[2];
+var iframe = document.createElement('iframe');
+iframe.src = "../course/ingproff2.php"
+child.appendChild(iframe);
+var child = elem.children[3];
+var iframe = document.createElement('iframe');
+iframe.src = "../course/ingproff3.php"
+child.appendChild(iframe);
+var child = elem.children[4];
+var iframe = document.createElement('iframe');
+iframe.src = "../course/ingproff4.php"
+child.appendChild(iframe);
+var child = elem;
+var iframe = document.createElement('iframe');
+iframe.src = "../course/ingproff5.php"
+child.appendChild(iframe);
+var child = elem.children[0];
+var iframe = document.createElement('iframe');
+iframe.src = "../course/ingproff6.php"
+child.appendChild(iframe);
 ground.appendChild(elem);
 boxes.push(box1);
 
