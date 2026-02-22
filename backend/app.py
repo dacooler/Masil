@@ -40,7 +40,7 @@ def create_user(name: str, password: str, mail_adress: str):
         return result, 400
 
     user: User = result
-    return 'Successfully created user: ' + str(user.to_json()), 201
+    return jsonify({'status': 'success', 'message': 'Successfully created user: ' + str(user.to_json())}), 201
 
 
 @app.route('/users/login/<id>/<password>')
