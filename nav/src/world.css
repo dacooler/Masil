@@ -128,13 +128,13 @@
   }
   .spin1{
     position: absolute;
-    left: 500px;
-    top: 400px;
+    left: 450px;
+    top: 450px;
   }
   .spin2{
     position: absolute;
-    top: 2900px;
-    left: 500px;
+    top: 2950px;
+    left: 450px;
   }
 }
 @keyframes spin{
@@ -142,8 +142,8 @@
   to{transform: rotate(360deg)};
 }
 @keyframes spincubed{
-  from{transform: rotate(0deg) rotateY(45deg) rotateX(45deg)};
-  to{transform: rotate(360deg) rotateY(45deg) rotateX(45deg)};
+  from{transform: translate(-50%, 50%) rotate(0deg) rotateY(45deg) rotateX(45deg)};
+  to{transform: translate(-50%, 50%) rotate(360deg) rotateY(45deg) rotateX(45deg)};
 }
 @keyframes spin2{
   from{transform: rotateY(0deg)};
