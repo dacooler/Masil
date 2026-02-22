@@ -55,14 +55,8 @@ var elem = box1.get_element();
   '../course/ingproff3.php',
   '../course/ingproff4.php',
   '../course/ingproff5.php',
-  '../course/ingproff6.php'
 ].forEach((path, i) => {
-  if (i === 0) {
-    var child = elem;
-  }
-  else {
-    var child = elem.children[i - 1];
-  }
+  var child = elem.children[i - 1];
   child.onclick = () => {window.location.href = path};
   var iframe = document.createElement('iframe');
   iframe.onclick = () => {window.location.href = path};
@@ -85,14 +79,8 @@ var elem = box3.get_element();
   '../course/kurs3.php',
   '../course/kurs4.php',
   '../course/kurs5.php',
-  '../course/kurs6.php'
 ].forEach((path, i) => {
-  if (i == 0) {
-    var child = elem;
-  }
-  else {
-    var child = elem.children[i - 1];
-  }
+  var child = elem.children[i - 1];
   child.onclick = () => {window.location.href = path};
   var iframe = document.createElement('iframe');
   iframe.onclick = () => {window.location.href = path};
