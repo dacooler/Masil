@@ -10,7 +10,7 @@
       </div>
       <div class="login">
         <h3> Recover password </h3>
-        <form action="forgor_pass.php" method="post">
+        <form id="forgorForm" method="post">
           <div class="imgcontainer">
             <img src="assets/images/flen.jpg" alt="Avatar" class="avatar">
           </div>
@@ -23,5 +23,29 @@
         </form>
       </div>
     </div>
+    <script>
+    document.getElementById("forgorForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+
+      fetch("forgor_pass.php", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert("Check your e-mail address.");
+        } else {
+          alert("Recovery failed: " + (data.message || ""));
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        alert("Recovery failed");
+      });
+    });
+    </script>
   </body>
 </html>

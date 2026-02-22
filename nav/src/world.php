@@ -18,11 +18,13 @@ $buttons = [
 
   <script>
     const buttons = document.querySelectorAll('.likeBtn');
-
     buttons.forEach(button => {
     button.addEventListener('click', () => {
       const apiUrl = button.dataset.api; // read data-api attribute
-      fetch(apiUrl, { method: 'GET' })
+      fetch(apiUrl, { 
+        method: 'GET',
+        credentials: 'include'
+      })
       });
     });
   </script>

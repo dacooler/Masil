@@ -1,20 +1,20 @@
 <?php
-$id = $_POST['uname'];
-$password = $_POST['psw'];
-$remember = $_POST['remember'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = urlencode($_POST['uname']);
+    $password = urlencode($_POST['psw']);
 
-$id = urlencode($id);
-$password = urlencode($password);
+    $url = "http://toglivvilgot.pythonanywhere.com/users/login/$id/$password";
 
+    $response = file_get_contents($url);
 
-$url = "http://toglivvilgot.pythonanywhere.com/users/login/$id/$password";
-
-$response = file_get_contents($url);
-
-if ($response === FALSE) {
-    echo "Request failed.";
+    if ($response === FALSE) {
+        http_response_code(500);
+        echo json_encode(["success" => false, "message" => "Request failed."]);
+    } else {
+        // Return JSON instead of redirect
+        echo json_encode(["success" => true]);
+    }
 } else {
-    header("Location: nav/");
-    exit();
+    http_response_code(405); // Method not allowed
 }
 ?>
