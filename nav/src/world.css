@@ -69,7 +69,9 @@
     position:absolute;
     top: 50%;
     left: 50%;
-    animation: spin 10s linear infinite;
+    transform: rotateY(45deg);
+    animation: spincubed 40s linear infinite;
+    transform-origin: 100% 0px;
     div{
       background-size: 100%;
       backface-visibility: hidden;
@@ -138,6 +140,10 @@
 @keyframes spin{
   from{transform: rotate(0deg)};
   to{transform: rotate(360deg)};
+}
+@keyframes spincubed{
+  from{transform: translate(-50%, 50%) rotate(0deg) rotateY(45deg) rotateX(45deg)};
+  to{transform: translate(-50%, 50%) rotate(360deg) rotateY(45deg) rotateX(45deg)};
 }
 @keyframes spin2{
   from{transform: rotateY(0deg)};
