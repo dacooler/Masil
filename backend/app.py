@@ -69,10 +69,9 @@ def mail_recover_password(mail_adress: str):
     return response.text, response.status_code
 
 
-@app.route('/like/<page_id>/<name>')
-def like_page(page_id: str, name: str):
-    user = database.get_user_by_name(name)
-    database.like_or_create_page(page_id, user)
+@app.route('/like/<page_id>')
+def like_page(page_id: str):
+    database.like_or_create_page(page_id)
     return 'Liked page', 200
 
 
