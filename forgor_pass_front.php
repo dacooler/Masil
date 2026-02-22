@@ -24,27 +24,28 @@
       </div>
     </div>
     <script>
-    document.getElementById("forgorForm").addEventListener("submit", function(e) {
+    document.getElementById("forgorForm").addEventListener("submit", async function(e) {
       e.preventDefault();
-
       const formData = new FormData(this);
+      const email = encodeURIComponent(formData.get("email"));
 
-      fetch("forgor_pass.php", {
-        method: "POST",
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          alert("Check your e-mail address.");
+      try {
+        const response = await fetch(`http://toglivvilgot.pythonanywhere.com/mail/${email}`, {
+          method: "GET",
+          credentials: "include"
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert("Account recovery e-mail sent.");
         } else {
-          alert("Recovery failed: " + (data.message || ""));
+          alert("Account recovery failed: " + (data.message || ""));
         }
-      })
-      .catch(error => {
-        console.error(error);
-        alert("Recovery failed");
-      });
+      } catch (err) {
+        console.error(err);
+        alert("Account recovery failed");
+      }
     });
     </script>
   </body>

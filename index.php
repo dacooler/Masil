@@ -40,19 +40,19 @@
     document.getElementById("loginForm").addEventListener("submit", async function(e) {
       e.preventDefault();
       const formData = new FormData(this);
-      const uname = formData.get("uname");
-      const psw = formData.get("psw");
+      const uname = encodeURIComponent(formData.get("uname"));
+      const psw = encodeURIComponent(formData.get("psw"));
 
       try {
-        const response = await fetch(`http://toglivvilgot.pythonanywhere.com/users/login/${encodeURIComponent(uname)}/${encodeURIComponent(psw)}`, {
+        const response = await fetch(`http://toglivvilgot.pythonanywhere.com/users/login/${uname}/${psw}`, {
           method: "GET",
           credentials: "include"
         });
 
         const data = await response.json();
 
-        if (data.login) {
-          window.location.href = "nav/"; // login successful
+        if (response.ok) {
+          window.location.href = "nav/";
         } else {
           alert("Login failed: " + (data.message || ""));
         }
