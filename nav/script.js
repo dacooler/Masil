@@ -47,31 +47,28 @@ var box1 = new Box({
   height: 100,
   hclass: 'navThing',
 });
+
 var elem = box1.get_element();
-var child = elem.children[1];
-var iframe = document.createElement('iframe');
-iframe.src = "../course/ingproff.php"
-child.appendChild(iframe);
-var child = elem.children[2];
-var iframe = document.createElement('iframe');
-iframe.src = "../course/ingproff2.php"
-child.appendChild(iframe);
-var child = elem.children[3];
-var iframe = document.createElement('iframe');
-iframe.src = "../course/ingproff3.php"
-child.appendChild(iframe);
-var child = elem.children[4];
-var iframe = document.createElement('iframe');
-iframe.src = "../course/ingproff4.php"
-child.appendChild(iframe);
-var child = elem;
-var iframe = document.createElement('iframe');
-iframe.src = "../course/ingproff5.php"
-child.appendChild(iframe);
-var child = elem.children[0];
-var iframe = document.createElement('iframe');
-iframe.src = "../course/ingproff6.php"
-child.appendChild(iframe);
+[
+  '../course/ingproff.php',
+  '../course/ingproff2.php',
+  '../course/ingproff3.php',
+  '../course/ingproff4.php',
+  '../course/ingproff5.php',
+  '../course/ingproff6.php'
+].forEach((path, i) => {
+  if (i === 0) {
+    var child = elem;
+  }
+  else {
+    var child = elem.children[i - 1];
+  }
+  child.onclick = () => {window.location.href = path};
+  var iframe = document.createElement('iframe');
+  iframe.onclick = () => {window.location.href = path};
+  iframe.src = path;
+  child.appendChild(iframe);
+});
 ground.appendChild(elem);
 boxes.push(box1);
 
@@ -82,30 +79,26 @@ var box3 = new Box({
   hclass: 'navThing',
 });
 var elem = box3.get_element();
-var child = elem.children[1];
-var iframe = document.createElement('iframe');
-iframe.src = "../course/kurs1.php"
-child.appendChild(iframe);
-var child = elem.children[2];
-var iframe = document.createElement('iframe');
-iframe.src = "../course/kurs2.php"
-child.appendChild(iframe);
-var child = elem.children[3];
-var iframe = document.createElement('iframe');
-iframe.src = "../course/kurs3.php"
-child.appendChild(iframe);
-var child = elem.children[4];
-var iframe = document.createElement('iframe');
-iframe.src = "../course/kurs4.php"
-child.appendChild(iframe);
-var child = elem;
-var iframe = document.createElement('iframe');
-iframe.src = "../course/kurs5.php"
-child.appendChild(iframe);
-var child = elem.children[0];
-var iframe = document.createElement('iframe');
-iframe.src = "../course/kurs6.php"
-child.appendChild(iframe);
+[
+  '../course/kurs1.php',
+  '../course/kurs2.php',
+  '../course/kurs3.php',
+  '../course/kurs4.php',
+  '../course/kurs5.php',
+  '../course/kurs6.php'
+].forEach((path, i) => {
+  if (i == 0) {
+    var child = elem;
+  }
+  else {
+    var child = elem.children[i - 1];
+  }
+  child.onclick = () => {window.location.href = path};
+  var iframe = document.createElement('iframe');
+  iframe.onclick = () => {window.location.href = path};
+  iframe.src = path;
+  child.appendChild(iframe);
+});
 ground.appendChild(elem);
 boxes.push(box3);
 
