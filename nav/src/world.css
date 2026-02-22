@@ -104,11 +104,18 @@
     top: 3000px;
     left: 500px;
   }
-  .like{
+  .like:has(.button1){
     position: absolute;
     transform: rotateX(90deg) translateY(50px) scale(1, -1);
     transform-style: preserve-3d;
     top: 100px;
+    left: 200px;
+  }
+  .like:has(.button2){
+    position: absolute;
+    transform: rotateX(90deg) translateY(50px) scale(1, -1);
+    transform-style: preserve-3d;
+    top: 3000px;
     left: 200px;
   }
   .carpet{
@@ -120,11 +127,28 @@
     height: 3000px;
     box-shadow: -1px -1px 1px #000a;
   }
+  .carpet2{
+    background-image:url("../../assets/images/carpet.jpg");
+    position: absolute;
+    filter: hue-rotate(90deg);
+    top: 100px;
+    left: 300px;
+    width: 3000px;
+    height: 200px;
+    box-shadow: -1px -1px 1px #000a;
+  }
+  .text{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateX(-90deg) scale(-1, 1) translate(0, -200px);
+  }
   .under{
     background-image:radial-gradient(black, white);
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    transform-style: preserve-3d;
   }
   .spin1{
     position: absolute;
@@ -135,6 +159,11 @@
     position: absolute;
     top: 2950px;
     left: 450px;
+  }
+  .spin3{
+    position: absolute;
+    left: 950px;
+    top: 450px;
   }
 }
 @keyframes spin{

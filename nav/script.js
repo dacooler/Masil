@@ -75,6 +75,40 @@ child.appendChild(iframe);
 ground.appendChild(elem);
 boxes.push(box1);
 
+var box3 = new Box({
+  position: { x: 500, y: 1000 },
+  width: 100,
+  height: 100,
+  hclass: 'navThing',
+});
+var elem = box3.get_element();
+var child = elem.children[1];
+var iframe = document.createElement('iframe');
+iframe.src = "../course/kurs1.php"
+child.appendChild(iframe);
+var child = elem.children[2];
+var iframe = document.createElement('iframe');
+iframe.src = "../course/kurs2.php"
+child.appendChild(iframe);
+var child = elem.children[3];
+var iframe = document.createElement('iframe');
+iframe.src = "../course/kurs3.php"
+child.appendChild(iframe);
+var child = elem.children[4];
+var iframe = document.createElement('iframe');
+iframe.src = "../course/kurs4.php"
+child.appendChild(iframe);
+var child = elem;
+var iframe = document.createElement('iframe');
+iframe.src = "../course/kurs5.php"
+child.appendChild(iframe);
+var child = elem.children[0];
+var iframe = document.createElement('iframe');
+iframe.src = "../course/kurs6.php"
+child.appendChild(iframe);
+ground.appendChild(elem);
+boxes.push(box3);
+
 var newsBox = new Box({
   position: { x: 3000, y: 500 },
   width: 100,
@@ -256,12 +290,31 @@ main.addEventListener("click", async () => {
     }
   }
   if (!main.pointerLockElement) {
-    await main.requestPointerLock({
-      unadjustedMovement: true,
-    });
+    requestPointerLockWithUnadjustedMovement(main) 
   }
 
 });
+function requestPointerLockWithUnadjustedMovement(myTargetElement) {
+  const promise = myTargetElement.requestPointerLock({
+    unadjustedMovement: true,
+  });
+
+  if (!promise) {
+    console.log("disabling mouse acceleration is not supported");
+    return;
+  }
+
+  return promise
+    .then(() => console.log("pointer is locked"))
+    .catch((error) => {
+      if (error.name === "NotSupportedError") {
+        // Some platforms may not support unadjusted movement.
+        // You can request again a regular pointer lock.
+        return myTargetElement.requestPointerLock();
+      }
+    });
+}
+
  document.addEventListener("mousemove", updatePosition);
 
 function lockChangeAlert() {
