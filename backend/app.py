@@ -46,14 +46,14 @@ def create_user(name: str, password: str, mail_adress: str):
 @app.route('/users/login/<id>/<password>')
 def login(id: str, password: str):
     user = database.check_user(id, password)
-    if(user):
+    if user:
         access_token = create_access_token(identity=user.name)
         response = jsonify({'login': True})
-        set_access_cookies(response, access_token)
-        return access_token, 200
+        # Attach HttpOnly cookie
+        set_access_cookies(response, access_token, secure=False, samesite="None")
+        return response, 200  # ✅ return the response with cookie
     else:
         return jsonify({'login': False, 'message': 'wrong liuID, mail or password'}), 400
-
 
 @app.route('/')
 @jwt_required()
