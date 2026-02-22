@@ -104,7 +104,7 @@ var elem = newsBox.get_element();
   '../course/kurs4.php',
   '../course/kurs5.php'
 ].forEach((path, i) => {
-  var child = elem.children[i - 1];
+  var child = elem.children[i];
   child.onclick = () => {window.location.href = path};
   var iframe = document.createElement('iframe');
   iframe.onclick = () => {window.location.href = path};
