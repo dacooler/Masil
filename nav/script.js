@@ -54,9 +54,9 @@ var elem = box1.get_element();
   '../course/ingproff2.php',
   '../course/ingproff3.php',
   '../course/ingproff4.php',
-  '../course/ingproff5.php',
+  '../course/ingproff5.php'
 ].forEach((path, i) => {
-  var child = elem.children[i - 1];
+  var child = elem.children[i];
   child.onclick = () => {window.location.href = path};
   var iframe = document.createElement('iframe');
   iframe.onclick = () => {window.location.href = path};
@@ -78,9 +78,9 @@ var elem = box3.get_element();
   '../course/kurs2.php',
   '../course/kurs3.php',
   '../course/kurs4.php',
-  '../course/kurs5.php',
+  '../course/kurs5.php'
 ].forEach((path, i) => {
-  var child = elem.children[i - 1];
+  var child = elem.children[i];
   child.onclick = () => {window.location.href = path};
   var iframe = document.createElement('iframe');
   iframe.onclick = () => {window.location.href = path};
@@ -97,6 +97,20 @@ var newsBox = new Box({
   hclass: 'navThing',
 });
 var elem = newsBox.get_element();
+[
+  '../course/kurs1.php',
+  '../course/kurs2.php',
+  '../course/kurs3.php',
+  '../course/kurs4.php',
+  '../course/kurs5.php'
+].forEach((path, i) => {
+  var child = elem.children[i - 1];
+  child.onclick = () => {window.location.href = path};
+  var iframe = document.createElement('iframe');
+  iframe.onclick = () => {window.location.href = path};
+  iframe.src = path;
+  child.appendChild(iframe);
+});
 var child = elem.children[1];
 var iframe = document.createElement('iframe');
 iframe.src = "../news/news1.php"
