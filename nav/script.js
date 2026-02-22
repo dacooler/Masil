@@ -54,12 +54,20 @@ var elem = box1.get_element();
   '../course/ingproff2.php',
   '../course/ingproff3.php',
   '../course/ingproff4.php',
-  '../course/ingproff5.php'
+  '../course/ingproff5.php',
+  '../course/ingproff6.php',
 ].forEach((path, i) => {
-  var child = elem.children[i];
-  child.onclick = () => {window.location.href = path};
+  if (i === 5) {
+    var child = elem;
+  }
+  else {
+    var child = elem.children[i];
+  }
   var iframe = document.createElement('iframe');
-  iframe.onclick = () => {window.location.href = path};
+  if (i !== 5) {
+    child.onclick = () => {window.location.href = path};
+    iframe.onclick = () => {window.location.href = path};
+  }
   iframe.src = path;
   child.appendChild(iframe);
 });
@@ -78,12 +86,20 @@ var elem = box3.get_element();
   '../course/kurs2.php',
   '../course/kurs3.php',
   '../course/kurs4.php',
-  '../course/kurs5.php'
+  '../course/kurs5.php',
+  '../course/kurs6.php'
 ].forEach((path, i) => {
-  var child = elem.children[i];
-  child.onclick = () => {window.location.href = path};
+  if (i === 5) {
+    var child = elem;
+  }
+  else {
+    var child = elem.children[i];
+  }
   var iframe = document.createElement('iframe');
-  iframe.onclick = () => {window.location.href = path};
+  if (i !== 5) {
+    child.onclick = () => {window.location.href = path};
+    iframe.onclick = () => {window.location.href = path};
+  }
   iframe.src = path;
   child.appendChild(iframe);
 });
@@ -98,43 +114,27 @@ var newsBox = new Box({
 });
 var elem = newsBox.get_element();
 [
-  '../course/kurs1.php',
-  '../course/kurs2.php',
-  '../course/kurs3.php',
-  '../course/kurs4.php',
-  '../course/kurs5.php'
+  '../news/news1.php',
+  '../news/news2.php',
+  '../news/news3.php',
+  '../news/news4.php',
+  '../news/news5.php',
+  '../news/news6.php'
 ].forEach((path, i) => {
-  var child = elem.children[i];
-  child.onclick = () => {window.location.href = path};
+  if (i === 5) {
+    var child = elem;
+  }
+  else {
+    var child = elem.children[i];
+  }
   var iframe = document.createElement('iframe');
-  iframe.onclick = () => {window.location.href = path};
+  if (i !== 5) {
+    child.onclick = () => {window.location.href = path};
+    iframe.onclick = () => {window.location.href = path};
+  }
   iframe.src = path;
   child.appendChild(iframe);
 });
-var child = elem.children[1];
-var iframe = document.createElement('iframe');
-iframe.src = "../news/news1.php"
-child.appendChild(iframe);
-var child = elem.children[2];
-var iframe = document.createElement('iframe');
-iframe.src = "../news/news2.php"
-child.appendChild(iframe);
-var child = elem.children[3];
-var iframe = document.createElement('iframe');
-iframe.src = "../news/news3.php"
-child.appendChild(iframe);
-var child = elem.children[4];
-var iframe = document.createElement('iframe');
-iframe.src = "../news/news4.php"
-child.appendChild(iframe);
-var child = elem;
-var iframe = document.createElement('iframe');
-iframe.src = "../news/news5.php"
-child.appendChild(iframe);
-var child = elem.children[0];
-var iframe = document.createElement('iframe');
-iframe.src = "../news/news6.php"
-child.appendChild(iframe);
 ground.appendChild(elem);
 boxes.push(newsBox);
 
