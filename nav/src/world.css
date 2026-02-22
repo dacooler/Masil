@@ -7,11 +7,61 @@
   height: 4000px;
   background-image: linear-gradient(gray, lightgray);
   background-size: 10px 10px;
+  .leeHolder{
+    transform: translate(calc(var(--posX) * -1px), calc(var(--posZ) * -1px)) rotateX(90deg);
+    transform-origin: 50% 0%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    animation: leespin 40s linear infinite;
+    transform-style: preserve-3d;
+    transition: transform 10s;
+    .lee{
+      background-size: 100% 100%;
+      background-image: url("../../assets/images/lee.webp");
+      position: absolute;
+      transform:translateX(-500px) rotateY(90deg) scale(-1, -1);
+      width: 100px;
+      height: 100px;
+      p{
+        position: absolute;
+        top: -80px;
+      }
+      input{
+        position: absolute;
+        top: -10px;
+      }
+    }
+  }
+  .stop1{
+    transform: translate(calc(var(--posX) * -1px), 0px) rotateX(90deg) scale(1, -1) translate(-50%, -100%);
+  }
+  .stop2{
+    transform: translate(0px, calc(var(--posZ) * -1px)) rotateX(90deg) scale(1, -1) translate(-50%, -100%) rotateY(90deg) scale(-1, 1);
+  }
+  .stop3{
+    transform: translate(4000px, calc(var(--posZ) * -1px)) rotateX(90deg) scale(1, -1) translate(-50%, -100%) rotateY(90deg);
+  }
+  .stop4{
+    transform: translate(calc(var(--posX) * -1px), 4000px) rotateX(90deg) scale(1, -1) translate(-50%, -100%) scale(-1, 1);
+  }
+  .stop{
+    transform-origin: 50% 0%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-size: 100% 100%;
+    background-image: url("../../assets/images/stop.png");
+    width: 100px;
+    height: 100px;
+  }
   .wall{
-    --img: linear-gradient(lightblue, blue);
-    --cDepth: 500px;
+    --img: url("../../assets/images/bricks.jpg");
+    --cDepth: 200px;
+    box-shadow: -10px -10px 8px #000a;
     div{
-      backface-visibility: none;
+      background-size: 200px 200px;
+      backface-visibility: hidden;
     }
   }
   .navThing{
@@ -22,7 +72,7 @@
     animation: spin 10s linear infinite;
     div{
       background-size: 100%;
-      backface-visibility: none;
+      backface-visibility: hidden;
     }
     iframe{
       width: 1000px;
@@ -42,6 +92,7 @@
   }
   .spinner{
     animation: spin2 2s linear infinite;
+    background-color: lightblue;
   }
   .news{
     transform-style: preserve-3d;
@@ -58,6 +109,31 @@
     top: 100px;
     left: 200px;
   }
+  .carpet{
+    background-image:url("../../assets/images/carpet.jpg");
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 200px;
+    height: 3000px;
+    box-shadow: -1px -1px 1px #000a;
+  }
+  .under{
+    background-image:radial-gradient(black, white);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+  .spin1{
+    position: absolute;
+    left: 450px;
+    top: 450px;
+  }
+  .spin2{
+    position: absolute;
+    top: 2950px;
+    left: 450px;
+  }
 }
 @keyframes spin{
   from{transform: rotate(0deg)};
@@ -67,3 +143,7 @@
   from{transform: rotateY(0deg)};
   to{transform: rotateY(360deg)};
 }
+    @keyframes leespin{
+      from{transform: translate(calc(var(--posX) * -1px), calc(var(--posZ) * -1px)) rotateX(90deg) rotateY(0deg)};
+      to{transform: translate(calc(var(--posX) * -1px), calc(var(--posZ) * -1px)) rotateX(90deg) rotateY(360deg)};
+    }

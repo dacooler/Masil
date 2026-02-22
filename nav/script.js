@@ -64,6 +64,23 @@ var newsBox = new Box({
 ground.appendChild(newsBox.get_element());
 boxes.push(newsBox);
 
+var wall1 = new Box({
+  position: { x: 800, y: 500},
+  width: 100,
+  height: 2000,
+  hclass: 'wall',
+});
+ground.appendChild(wall1.get_element());
+boxes.push(wall1);
+var wall2 = new Box({
+  position: { x: 800, y: 600},
+  width: 2000,
+  height: 100,
+  hclass: 'wall',
+});
+ground.appendChild(wall2.get_element());
+boxes.push(wall2);
+
 /*
 var wall1 = new Box({
   position: { x: -100, y: -100},
@@ -112,6 +129,15 @@ function collision({Box: box }) {
   )
 }
 
+function boundaries() {
+  return !(
+    -(posX) < 4000 &&
+    -(posX) > 0 &&
+    -(posZ) < 4000 &&
+    -(posZ) > 0 
+  )
+}
+
 
 function mainLoop() {
   var prevPosZ = posZ;
@@ -121,6 +147,12 @@ function mainLoop() {
   posX += dSide * Math.sin((rotateZ + 90) * Math.PI/180);
   posZ += dSide * Math.cos((rotateZ + 90) * Math.PI/180);
   posY += dy;
+  if (posY > 0) {
+    dy -= 1;
+  }
+  else {
+    dy = 0;
+  }
   for (let i = 0; i < boxes.length; ++i) {
     if (collision({Box: boxes[i]})) {
       posX = prevPosX;
@@ -128,6 +160,11 @@ function mainLoop() {
       console.log("colision");
     }
   }
+    if (boundaries()) {
+      posX = prevPosX;
+      posZ = prevPosZ;
+      console.log("colision");
+    }
   r.style.setProperty('--posX', posX);
   r.style.setProperty('--posY', posY);
   r.style.setProperty('--posZ', posZ);
@@ -158,6 +195,12 @@ document.addEventListener("keydown", (event) => {
     dSide = -10;
     return;
   }
+  if (keyName === " "){
+    if (posY === 0){
+      dy = 15;
+    }
+    return;
+  }
 
 });
 
@@ -186,6 +229,12 @@ document.addEventListener("keyup", (event) => {
 const main = document.getElementById("main");
 
 main.addEventListener("click", async () => {
+  const noPress = document.getElementsByClassName("noPress")
+  for (let i = 0; i <= noPress.length; i++){
+    if (event.target === noPress[i]){
+      return;
+    }
+  }
   if (!main.pointerLockElement) {
     await main.requestPointerLock({
       unadjustedMovement: true,

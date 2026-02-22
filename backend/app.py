@@ -6,11 +6,12 @@ from flask_jwt_extended import (
 import database_access as database
 import mail
 from database import db, User
+from flask_cors import CORS
 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///database.db'
-app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+app.config['JWT_TOKEN_LOCATION'] = ['cookies', 'headers']
 app.config['JWT_COOKIE_CSRF_PROTECT'] = False
 app.config['JWT_SECRET_KEY'] = 'super-secret-key-that-is-at-least-32-bytes-long-for-security-reasons'  # Change this later!
 
@@ -28,6 +29,8 @@ app.config['MAIL_DEFAULT_SENDER'] = 'viljo690@student.liu.se'
 jwt = JWTManager(app)
 
 db.init_app(app)
+
+CORS(app, supports_credentials=True)
 
 
 @app.route('/users/create/<name>/<password>/<mail_adress>')
@@ -47,7 +50,7 @@ def login(id: str, password: str):
         access_token = create_access_token(identity=user.name)
         response = jsonify({'login': True})
         set_access_cookies(response, access_token)
-        return response, 200
+        return access_token, 200
     else:
         return jsonify({'login': False, 'message': 'wrong liuID, mail or password'}), 400
 
