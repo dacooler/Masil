@@ -50,7 +50,7 @@ def login(id: str, password: str):
         access_token = create_access_token(identity=user.name)
         response = jsonify({'login': True})
         # Attach HttpOnly cookie
-        set_access_cookies(response, access_token, secure=False, samesite="None")
+        set_access_cookies(response, access_token)
         return response, 200  # ✅ return the response with cookie
     else:
         return jsonify({'login': False, 'message': 'wrong liuID, mail or password'}), 400
