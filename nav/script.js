@@ -72,6 +72,14 @@ var wall1 = new Box({
 });
 ground.appendChild(wall1.get_element());
 boxes.push(wall1);
+var wall2 = new Box({
+  position: { x: 800, y: 600},
+  width: 2000,
+  height: 100,
+  hclass: 'wall',
+});
+ground.appendChild(wall2.get_element());
+boxes.push(wall2);
 
 /*
 var wall1 = new Box({
@@ -121,6 +129,15 @@ function collision({Box: box }) {
   )
 }
 
+function boundaries() {
+  return !(
+    -(posX) < 4000 &&
+    -(posX) > 0 &&
+    -(posZ) < 4000 &&
+    -(posZ) > 0 
+  )
+}
+
 
 function mainLoop() {
   var prevPosZ = posZ;
@@ -143,6 +160,11 @@ function mainLoop() {
       console.log("colision");
     }
   }
+    if (boundaries()) {
+      posX = prevPosX;
+      posZ = prevPosZ;
+      console.log("colision");
+    }
   r.style.setProperty('--posX', posX);
   r.style.setProperty('--posY', posY);
   r.style.setProperty('--posZ', posZ);
@@ -207,6 +229,12 @@ document.addEventListener("keyup", (event) => {
 const main = document.getElementById("main");
 
 main.addEventListener("click", async () => {
+  const noPress = document.getElementsByClassName("noPress")
+  for (let i = 0; i <= noPress.length; i++){
+    if (event.target === noPress[i]){
+      return;
+    }
+  }
   if (!main.pointerLockElement) {
     await main.requestPointerLock({
       unadjustedMovement: true,

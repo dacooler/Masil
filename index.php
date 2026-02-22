@@ -10,7 +10,7 @@
       </div>
       <div class="login">
         <h3> Please DO login </h3>
-        <form action="login_user.php" method="post">
+        <form id="loginForm" method="post">
           <div class="imgcontainer">
             <img src="assets/images/flen.jpg" alt="Avatar" class="avatar">
           </div>
@@ -36,5 +36,31 @@
         </div>
       </div>
     </div>
+    <script>
+    document.getElementById("loginForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const uname = formData.get("uname");
+      const psw = formData.get("psw");
+
+      try {
+        const response = await fetch(`http://toglivvilgot.pythonanywhere.com/users/login/${encodeURIComponent(uname)}/${encodeURIComponent(psw)}`, {
+          method: "GET",
+          credentials: "include"
+        });
+
+        const data = await response.json();
+
+        if (data.login) {
+          window.location.href = "nav/"; // login successful
+        } else {
+          alert("Login failed: " + (data.message || ""));
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Login failed");
+      }
+    });
+    </script>
   </body>
 </html>
